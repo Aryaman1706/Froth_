@@ -26,6 +26,19 @@ router.get('/user', auth, async(req, res)=>{
     })
 });
 
+// get some user by id (done by group)
+router.get('/:id', async(req, res)=>{
+    const user = await User.findById(req.params.id);
+    if(!user){
+        res.send("user not found");
+    } else {
+        res.send({
+            name: user.name,
+            email: user.email
+        });
+    }
+});
+
 // edit my profile
 router.put('/me', auth, async(req, res)=>{
     const user = await User.findByIdAndUpdate(req.user._id, {
@@ -35,12 +48,6 @@ router.put('/me', auth, async(req, res)=>{
 
     res.send(user);
 });
-
-// add group
-// ( add group to user and add user to group )
-
-// remove group
-// ( remove group from user and remove user from group )
 
 // delete my account
 router.delete('/me', auth, async(req, res)=>{

@@ -14,7 +14,7 @@ app.use(express.json());
 
 // set up session cookies
 app.use(cookieSession({
-    keys: "professor"
+    keys: ["professor"]
 }));
 
 // initialize passport

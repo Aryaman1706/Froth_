@@ -20,7 +20,7 @@ const userSchema = new mongoose.Schema({
     },
     groups:{
         type: Array,
-        default: [] 
+        default: [] // array of object
     }
 });
 
