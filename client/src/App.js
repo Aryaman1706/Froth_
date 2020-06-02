@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './store';
@@ -6,10 +6,10 @@ import store from './store';
 import Navbar from './components/Navbar';
 import Profile from './components/User/Profile';
 import Home from './components/Pages/Home';
-import GroupModal from './components/Groups/GroupModal';
 import Explore from './components/Pages/Explore';
 
-const App = () => {
+const App = () => {;
+
   return (
     <Router>
     <Provider store = {store}>
@@ -20,7 +20,6 @@ const App = () => {
           <Route exact path='/profile' component={Profile} />
           <Route exact path='/explore' component={Explore} />
         </Switch>
-        <GroupModal />
       </Fragment>
     </Provider>
     </Router>

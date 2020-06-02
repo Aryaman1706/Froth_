@@ -14,7 +14,11 @@ router.get('/:id', auth, async (req, res)=>{
     if(!group) {
         res.send("no group found");
     } else {
-        res.send(group);
+        res.json({
+            title: group.title,
+            description: group.description,
+            membersList: group.members.length
+        });
     }
 });
 

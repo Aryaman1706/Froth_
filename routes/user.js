@@ -46,7 +46,7 @@ router.put('/me', auth, async(req, res)=>{
         phone: req.body.phone
     },{new:true});
 
-    res.send(user);
+    res.json(user);
 });
 
 // delete my account

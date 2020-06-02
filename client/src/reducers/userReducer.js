@@ -1,12 +1,15 @@
 import{
-    LOAD_USER
+    LOAD_USER,
+    UPDATE_USER,
+    LOGOUT_USER
 } from '../actions/types';
 
 const initialState = {
     user: null,
     myGroupList: [],
     myGroups: [],
-    loading: true
+    loading: true,
+    isAuthenticated: false
 }
 
 export default ( state = initialState, action ) => {
@@ -17,7 +20,25 @@ export default ( state = initialState, action ) => {
                 ...state,
                 user: action.payload,
                 myGroupList: action.payload.groups,
-                loading: false
+                loading: false,
+                isAuthenticated: true
+            };
+        
+        // update user
+        case UPDATE_USER:
+            return{
+                ...state,
+                user: action.payload
+            };
+        
+        // logout user
+        case LOGOUT_USER:
+            return{
+                ...state,
+                user: null,
+                myGroupList: [],
+                myGroups: [],
+                isAuthenticated: false
             };
 
         default:

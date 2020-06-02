@@ -1,5 +1,6 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import GroupModal from './GroupModal';
 
 const GroupItem = () => {
     return (
@@ -10,11 +11,13 @@ const GroupItem = () => {
                     <p><i className="material-icons left">group</i> 172 Members</p>
                 </div>
                 <div className="card-action">
-                    <Link to="#!" className="waves-effect waves-light btn-small green" style={{marginRight:"15px"}}>Open</Link>
-                    <Link to="#!" className="waves-effect waves-light btn-small green" style={{marginRight:"15px"}}>Join</Link>
+                    <Link to="#!" className="waves-effect waves-light btn-small white black-text" style={{marginRight:"15px"}}><strong>Open</strong></Link>
+                    <Link to="#!" className="waves-effect waves-light btn-small white black-text" style={{marginRight:"15px"}}><strong>Join</strong></Link>
                 </div>
             </div></div>
+            <GroupModal />
         </Fragment>
+        
     )
 }
 

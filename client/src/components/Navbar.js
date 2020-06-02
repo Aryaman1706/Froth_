@@ -5,12 +5,13 @@ import M from 'materialize-css/dist/js/materialize.min.js';
 import { connect } from 'react-redux';
 
 import { loadUser } from '../actions/userActions';
+import { logoutUser } from '../actions/userActions';
 
-const Navbar = ({ user: { user }, loadUser }) => {
+const Navbar = ({ user: { user }, loadUser, logoutUser }) => {
     useEffect(()=>{
         loadUser();
         // initialize materialize
-        M.AutoInit();
+        // M.AutoInit();
     }, []);
 
     return (
@@ -24,7 +25,7 @@ const Navbar = ({ user: { user }, loadUser }) => {
                         <ul id="nav-mobile" className="right">
                             <li><Link to="/profile"><i className="material-icons left">account_circle</i>Profile</Link></li>
                             <li><Link to="/explore"><i className="material-icons left">search</i>Explore</Link></li>
-                            <li><a href="#!"><i className="material-icons right">exit_to_app</i>Logout</a></li>
+                            <li><a href="http://localhost:5000/api/auth/logout" onClick={()=>{logoutUser();}}><i className="material-icons right">exit_to_app</i>Logout</a></li>
                         </ul>
                         </div>
                         :
@@ -49,5 +50,5 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps,
-    { loadUser }
+    { loadUser, logoutUser }
 )(Navbar);
