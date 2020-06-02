@@ -24,13 +24,20 @@ router.post('/', auth, async(req, res)=>{
         title: req.body.title,
         description: req.body.description 
     });
+    // adding user to group
     group.members.push(req.user._id);
     group = await group.save();
+    
+    // adding group to user
+    let user = await User.findById(req.user._id);
+    user.groups.push(group._id);
+    user = await user.save();
+
     res.send(group);
 });
 
 // join a group
-router.put('/:id', auth, async(req, res)=>{
+router.put('/join/:id', auth, async(req, res)=>{
     // adding user to group
     let group = await Group.findById(req.params.id);
     group.members.push(req.user._id);
@@ -45,7 +52,7 @@ router.put('/:id', auth, async(req, res)=>{
 });
 
 // leave a group
-router.put('/:id', auth, async(req, res)=>{
+router.put('/leave/:id', auth, async(req, res)=>{
     // removing user from group
     let group = await Group.findById(req.params.id);
     for( var i = 0; i<group.members.length; i++ ) {

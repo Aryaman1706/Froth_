@@ -1,5 +1,4 @@
 import React from 'react';
-import MyGroupsItem from './MyGroupItem';
 import MyGroups from './MyGroups';
 
 const Profile = () => {

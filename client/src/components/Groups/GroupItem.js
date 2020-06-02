@@ -11,7 +11,7 @@ const GroupItem = () => {
                 </div>
                 <div className="card-action">
                     <Link to="#!" className="waves-effect waves-light btn-small green" style={{marginRight:"15px"}}>Open</Link>
-                    <Link to="#!" className="waves-effect waves-light btn-small green">Join</Link>
+                    <Link to="#!" className="waves-effect waves-light btn-small green" style={{marginRight:"15px"}}>Join</Link>
                 </div>
             </div></div>
         </Fragment>

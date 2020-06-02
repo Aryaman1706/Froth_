@@ -1,14 +1,18 @@
 import React, { Fragment } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import store from './store';
+
 import Navbar from './components/Navbar';
-import Profile from './components/Profile';
-import Home from './components/Home';
-import GroupModal from './components/GroupModal';
-import Explore from './components/Explore';
+import Profile from './components/User/Profile';
+import Home from './components/Pages/Home';
+import GroupModal from './components/Groups/GroupModal';
+import Explore from './components/Pages/Explore';
 
 const App = () => {
   return (
     <Router>
+    <Provider store = {store}>
       <Fragment>
         <Navbar />
         <Switch>
@@ -18,6 +22,7 @@ const App = () => {
         </Switch>
         <GroupModal />
       </Fragment>
+    </Provider>
     </Router>
   )
 }

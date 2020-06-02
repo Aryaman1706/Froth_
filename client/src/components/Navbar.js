@@ -2,13 +2,17 @@ import React,{useEffect, Fragment} from 'react';
 import { Link } from 'react-router-dom';
 import 'materialize-css/dist/css/materialize.min.css';
 import M from 'materialize-css/dist/js/materialize.min.js';
+import { connect } from 'react-redux';
 
-const Navbar = () => {
+import { loadUser } from '../actions/userActions';
+
+const Navbar = ({ user: { user }, loadUser }) => {
     useEffect(()=>{
+        loadUser();
         // initialize materialize
         M.AutoInit();
     }, []);
-    const user=true;
+
     return (
         <Fragment>
             <div className="navbar-fixed">
@@ -25,9 +29,9 @@ const Navbar = () => {
                         </div>
                         :
                         <div className="nav-wrapper" style={{backgroundColor:"#1a237e"}}>
-                        <Link href="/" className="brand-logo">Froth_</Link>
+                        <Link to="/" className="brand-logo">Froth_</Link>
                         <ul id="nav-mobile" className="right">
-                            <li><a href="#!"><i className="material-icons right">person_add</i>Login With Google</a></li>
+                            <li><a href="http://localhost:5000/api/auth/google"><i className="material-icons right">person_add</i>Login With Google</a></li>
                         </ul>
                         </div>
                     }
@@ -37,6 +41,13 @@ const Navbar = () => {
         <br/>
       </Fragment>
     )
-}
+};
 
-export default Navbar
+const mapStateToProps = state => ({
+    user: state.user
+});
+
+export default connect(
+    mapStateToProps,
+    { loadUser }
+)(Navbar);

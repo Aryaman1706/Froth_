@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import Groups from './Groups'
+import Groups from '../Groups/Groups'
 
 const Explore = () => {
     return (
