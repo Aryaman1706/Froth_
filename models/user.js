@@ -15,8 +15,7 @@ const userSchema = new mongoose.Schema({
         type: String
     },
     phone:{
-        type: String,
-        minlength: 10
+        type: String
     },
     groups:{
         type: Array,

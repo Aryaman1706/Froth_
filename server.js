@@ -6,6 +6,7 @@ const passportSetup = require('./config/passport-setup');
 
 const user = require('./routes/user');
 const auth = require('./routes/auth-google');
+const group = require('./routes/group');
 
 const app = express();
 
@@ -23,6 +24,7 @@ app.use(passport.session());
 
 app.use('/api/user', user);
 app.use('/api/auth', auth);
+app.use('/api/group', group);
 
 // database setup
 mongoose.connect('mongodb://localhost/froth')

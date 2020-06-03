@@ -12,6 +12,10 @@ const groupSchema = new mongoose.Schema({
     members:{
         type:Array,
         default:[] // array of id of users
+    },
+    membersLength: {
+        type: Number,
+        default: 0
     }
 });
 

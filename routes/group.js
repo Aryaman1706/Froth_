@@ -8,6 +8,12 @@ const { Group } = require('../models/group');
 
 const router = express.Router();
 
+// get all groups
+router.get('/', async(req, res)=>{
+    const group = await Group.find({},{"members": 0}).sort('-membersLength');
+    res.send(group);
+});
+
 // to get info about a group
 router.get('/:id', auth, async (req, res)=>{
     const group = await Group.findById(req.params.id);
@@ -17,7 +23,8 @@ router.get('/:id', auth, async (req, res)=>{
         res.json({
             title: group.title,
             description: group.description,
-            membersList: group.members.length
+            membersLength: group.membersLength,
+            _id: group._id
         });
     }
 });
@@ -30,6 +37,7 @@ router.post('/', auth, async(req, res)=>{
     });
     // adding user to group
     group.members.push(req.user._id);
+    group.membersLength = group.membersLength + 1;
     group = await group.save();
     
     // adding group to user
@@ -37,7 +45,12 @@ router.post('/', auth, async(req, res)=>{
     user.groups.push(group._id);
     user = await user.save();
 
-    res.send(group);
+    res.json({
+        title: group.title,
+        description: group.description,
+        membersLength: group.membersLength,
+        _id: group._id
+    });
 });
 
 // join a group
@@ -45,6 +58,7 @@ router.put('/join/:id', auth, async(req, res)=>{
     // adding user to group
     let group = await Group.findById(req.params.id);
     group.members.push(req.user._id);
+    group.membersLength = group.membersLength + 1;
     group = await group.save();
 
     // adding group to user
@@ -62,6 +76,7 @@ router.put('/leave/:id', auth, async(req, res)=>{
     for( var i = 0; i<group.members.length; i++ ) {
         if(group.members[i] === req.user._id){
             group.members.splice(i, 1);
+            group.membersLength = group.membersLength - 1;
             group = await group.save();
             break;
         };
@@ -86,9 +101,12 @@ router.put('/removeMember/:id', async(req, res)=>{
     for(var i=0; i<group.members.length; i++){
         if(group.members[i] === req.body._id){
             group.members.splice(i,1);
+            group.membersLength = group.membersLength - 1;
             group = await group.save();
             break;
         }
     }
     res.send(group);
 });
+
+module.exports = router;

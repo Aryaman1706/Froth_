@@ -1,36 +1,65 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { connect } from 'react-redux';
 
-const AddGroupModal = () => {
+import { addGroup } from '../../actions/groupActions';
+
+const AddGroupModal = ({ addGroup }) => {
+
+    const [ groupData, setGroupData ] = useState({
+        title: "",
+        description: ""
+    });
+
+    const { title, description } = groupData;
+
+    const onChange = (e) => {
+        setGroupData({
+            ...groupData,
+            [e.target.name]: e.target.value
+        })
+    };
+
+    const onSubmit = (e) => {
+        e.preventDefault();
+        // add group
+        addGroup(groupData);
+        setGroupData({
+            title: "",
+            description:""
+        });
+    };
+
     return (
-        <div id="add-group-modal" className="modal" style={{backgroundColor:"rgb(0, 180, 216)"}}>
+        <div id="add-group-modal" className="modal primary">
             <div className="modal-content">
                 <h4 className="center-align white-text" style={{fontFamily: "Concert One"}}>Add public Group</h4>
                 <br />
-                <form>
+                <form onSubmit={onSubmit}>
                     <div className="row">
                         <div className="input-field col s12">
-                        <input name="title" type="text" className="white-text" style={{borderBottomColor:'white'}} />
+                        <input name="title" type="text" value={title} onChange={onChange} className="white-text" style={{borderBottomColor:'white'}} />
                         <label htmlFor="title" className="active white-text ">Title</label>
                         </div>
                     </div>
 
                     <div className="row">
                         <div className="input-field col s12">
-                        <textarea name="description" type="text" className="white-text materialize-textarea" style={{borderBottomColor:'white'}} />
+                        <textarea name="description" type="text" value={description} onChange={onChange} className="white-text materialize-textarea" style={{borderBottomColor:'white'}} />
                         <label htmlFor="description" className="active white-text ">Description</label>
                         </div>
                     </div>
-                    
-                    <div className="modal-footer" style={{backgroundColor:"rgb(0, 180, 216)"}}>
-                        <input className="waves-effect waves-light btn white black-text" 
+
+                        <input className="waves-effect waves-light btn white black-text modal-close" 
                             type="submit"
                             value="Create & Join"
                         />
-                    </div>
                 </form>
             </div>
         </div>
     )
 }
 
-export default AddGroupModal
+export default connect(
+    null,
+    { addGroup }
+)(AddGroupModal);

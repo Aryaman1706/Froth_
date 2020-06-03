@@ -6,10 +6,12 @@ import { connect } from 'react-redux';
 
 import { loadUser } from '../actions/userActions';
 import { logoutUser } from '../actions/userActions';
+import { loadGroups } from '../actions/groupActions'
 
-const Navbar = ({ user: { user }, loadUser, logoutUser }) => {
+const Navbar = ({ user: { user }, groups: { groups }, loadUser, logoutUser, loadGroups }) => {
     useEffect(()=>{
         loadUser();
+        loadGroups();
         // initialize materialize
         // M.AutoInit();
     }, []);
@@ -45,10 +47,11 @@ const Navbar = ({ user: { user }, loadUser, logoutUser }) => {
 };
 
 const mapStateToProps = state => ({
-    user: state.user
+    user: state.user,
+    groups: state.groups
 });
 
 export default connect(
     mapStateToProps,
-    { loadUser, logoutUser }
+    { loadUser, logoutUser, loadGroups }
 )(Navbar);
