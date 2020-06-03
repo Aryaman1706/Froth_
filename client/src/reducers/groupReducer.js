@@ -1,6 +1,8 @@
 import{
     ADD_GROUP,
-    LOAD_GROUPS
+    LOAD_GROUPS,
+    JOIN_GROUP,
+    LEAVE_GROUP
 } from '../actions/types';
 
 const initialState = {
@@ -25,6 +27,22 @@ export default ( state = initialState, action ) => {
                 ...state,
                 groups: action.payload,
                 group_loading: false
+            };
+
+        // join group
+        case JOIN_GROUP:
+            return{
+                ...state,
+                groups: state.groups.filter(
+                    x => x._id !== action.payload._id
+                )
+            };
+
+        // leave group
+        case LEAVE_GROUP:
+            return{
+                ...state,
+                groups: [action.payload, ...state.groups]
             };
 
         default:

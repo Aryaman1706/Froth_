@@ -63,10 +63,9 @@ export const leaveGroup = (id) => async dispatch => {
     };
 
     const res = await axios.put(`/api/group/leave/${id}`, null, config);
-    console.log(res.data);
     dispatch({
         type: LEAVE_GROUP,
-        payload: id
+        payload: res.data
     });
 };
 

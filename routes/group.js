@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 mongoose.set('useFindAndModify', false);
 const auth = require('../middleware/auth');
+const joined = require('../functions/joined');
 
 const { User } = require('../models/user');
 const { Group } = require('../models/group');
@@ -10,8 +11,16 @@ const router = express.Router();
 
 // get all groups
 router.get('/', auth, async(req, res)=>{
+    const user = await User.findById(req.user._id);
     const group = await Group.find({},{"members": 0}).sort('-membersLength');
-    res.send(group);
+    var result= [];
+    group.forEach((item)=>{
+        console.log(item)
+        if( joined(item, user) === false ){
+            result.push(item)
+        }
+    });
+    res.send(result);
 });
 
 // get whole group
@@ -61,23 +70,28 @@ router.post('/', auth, async(req, res)=>{
 
 // join a group
 router.put('/join/:id', auth, async(req, res)=>{
-    // adding user to group
     let group = await Group.findById(req.params.id);
-    group.members.push(req.user._id);
-    group.membersLength = group.membersLength + 1;
-    group = await group.save();
-
-    // adding group to user
     let user = await User.findById(req.user._id);
-    user.groups.push(group._id);
-    user = await user.save();
+    if( joined(group, user) === false ){
+        // adding user to group
+        group.members.push(req.user._id);
+        group.membersLength = group.membersLength + 1;
+        group = await group.save();
 
-    res.json({
-        title: group.title,
-        description: group.description,
-        membersLength: group.membersLength,
-        _id: group._id
-    });
+        // adding group to user
+        user.groups.push(group._id);
+        user = await user.save();
+
+        res.json({
+            title: group.title,
+            description: group.description,
+            membersLength: group.membersLength,
+            _id: group._id
+        });
+    }else{
+        console.log("already joined");
+    }
+    
 });
 
 // leave a group

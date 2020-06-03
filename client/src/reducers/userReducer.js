@@ -65,10 +65,10 @@ export default ( state = initialState, action ) => {
             return{
                 ...state,
                 myGroups: state.myGroups.filter(
-                    x => x._id !== action.payload
+                    x => x._id !== action.payload._id
                 ),
                 myGroupList : state.myGroupList.filter(
-                    x => x !== action.payload
+                    x => x !== action.payload._id
                 )
             };
 
