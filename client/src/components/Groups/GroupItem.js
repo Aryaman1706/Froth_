@@ -3,12 +3,20 @@ import { Link } from 'react-router-dom';
 import GroupModal from './GroupModal';
 import M from 'materialize-css/dist/js/materialize.min.js';
 
-const GroupItem = (props) => {
+import { connect } from 'react-redux';
+import { joinGroup } from '../../actions/userActions';
+
+const GroupItem = ({ group, joinGroup}) => {
     useEffect(()=>{
         M.AutoInit();
     },[]);
 
-    const { title, description, membersLength } = props.group;
+    const { title, description, membersLength, _id } = group;
+
+    const onJoin = (e) => {
+        joinGroup(_id);
+    };
+
     return (
         <Fragment>
             <div className="col s4"><div className="card-panel primary" style={{padding:"10px"}}>
@@ -18,12 +26,15 @@ const GroupItem = (props) => {
                 </div>
                 <div className="card-action">
                     <Link to="#!" className="waves-effect waves-light btn-small white black-text" style={{marginRight:"15px"}}><strong>Open</strong></Link>
-                    <Link to="#!" className="waves-effect waves-light btn-small white black-text" style={{marginRight:"15px"}}><strong>Join</strong></Link>
+                    <Link onClick={onJoin} className="waves-effect waves-light btn-small white black-text" style={{marginRight:"15px"}}><strong>Join</strong></Link>
                 </div>
             </div></div>
         </Fragment>
         
     )
-}
+};
 
-export default GroupItem
+export default connect(
+    null,
+    { joinGroup }
+)(GroupItem);

@@ -15,7 +15,8 @@ const userSchema = new mongoose.Schema({
         type: String
     },
     phone:{
-        type: String
+        type: String,
+        default: "Not set"
     },
     groups:{
         type: Array,

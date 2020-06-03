@@ -6,15 +6,21 @@ import { connect } from 'react-redux';
 
 import { loadUser } from '../actions/userActions';
 import { logoutUser } from '../actions/userActions';
-import { loadGroups } from '../actions/groupActions'
+import { loadGroups } from '../actions/groupActions';
+import { loadMyGroups } from '../actions/userActions';
 
-const Navbar = ({ user: { user }, groups: { groups }, loadUser, logoutUser, loadGroups }) => {
+const Navbar = ({ user: { user, loading, myGroupList }, groups: { groups }, loadUser, logoutUser, loadGroups, loadMyGroups }) => {
     useEffect(()=>{
         loadUser();
         loadGroups();
-        // initialize materialize
-        // M.AutoInit();
     }, []);
+
+    useEffect(()=>{
+        console.log("hello", myGroupList);
+        myGroupList.forEach(id => {
+            loadMyGroups(id);
+        });
+    },[loading])
 
     return (
         <Fragment>
@@ -53,5 +59,5 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps,
-    { loadUser, logoutUser, loadGroups }
+    { loadUser, logoutUser, loadGroups, loadMyGroups }
 )(Navbar);

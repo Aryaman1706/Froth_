@@ -11,7 +11,7 @@ const Profile = ({ user: { user }, updateUser }) => {
             setProfile({
                 name: user.name,
                 email: user.email,
-                phone: "Not set"
+                phone: user.phone
             });
         }else{
             setProfile({

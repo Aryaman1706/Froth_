@@ -1,7 +1,11 @@
 import{
     LOAD_USER,
     UPDATE_USER,
-    LOGOUT_USER
+    LOGOUT_USER,
+    LOAD_MY_GROUPS,
+    ADD_GROUP,
+    LEAVE_GROUP,
+    JOIN_GROUP
 } from '../actions/types';
 
 const initialState = {
@@ -40,6 +44,41 @@ export default ( state = initialState, action ) => {
                 myGroups: [],
                 isAuthenticated: false
             };
+
+        // load my groups
+        case LOAD_MY_GROUPS:
+            return{
+                ...state,
+                myGroups: [action.payload, ...state.myGroups]
+            };
+
+        // create and join
+        case ADD_GROUP:
+            return{
+                ...state,
+                myGroups: [action.payload, ...state.myGroups],
+                myGroupList: [...state.myGroupList, action.payload._id]
+            };
+
+        // leave a group
+        case LEAVE_GROUP:
+            return{
+                ...state,
+                myGroups: state.myGroups.filter(
+                    x => x._id !== action.payload
+                ),
+                myGroupList : state.myGroupList.filter(
+                    x => x !== action.payload
+                )
+            };
+
+        // join group
+        case JOIN_GROUP:
+            return{
+                ...state,
+                myGroups: [action.payload, ...state.myGroups],
+                myGroupList: [...state.myGroupList, action.payload._id]
+            }
 
         default:
             return state;

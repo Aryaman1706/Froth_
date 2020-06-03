@@ -3,7 +3,10 @@ import axios from 'axios';
 import {
     LOAD_USER,
     UPDATE_USER,
-    LOGOUT_USER
+    LOGOUT_USER,
+    LOAD_MY_GROUPS,
+    LEAVE_GROUP,
+    JOIN_GROUP
 } from './types';
 
 // load user
@@ -40,3 +43,44 @@ export const logoutUser = () => async dispatch => {
         type: LOGOUT_USER
     });
 };
+
+// load my groups
+export const loadMyGroups = (id) => async dispatch => {
+    console.log(1);
+    const res = await axios.get(`/api/group/${id}`);
+    dispatch({
+        type: LOAD_MY_GROUPS,
+        payload: res.data
+    })
+};
+
+// leave group
+export const leaveGroup = (id) => async dispatch => {
+    const config = {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    };
+
+    const res = await axios.put(`/api/group/leave/${id}`, null, config);
+    console.log(res.data);
+    dispatch({
+        type: LEAVE_GROUP,
+        payload: id
+    });
+};
+
+// join group
+export const joinGroup = (id) => async dispatch => {
+    const config = {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    };
+
+    const res = await axios.put(`/api/group/join/${id}`, null, config);
+    dispatch({
+        type: JOIN_GROUP,
+        payload: res.data
+    })
+}
