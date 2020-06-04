@@ -7,6 +7,7 @@ import Navbar from './components/Navbar';
 import Profile from './components/User/Profile';
 import Home from './components/Pages/Home';
 import Explore from './components/Pages/Explore';
+import GroupInfo from './components/Groups/GroupInfo';
 
 const App = () => {;
 
@@ -19,6 +20,7 @@ const App = () => {;
           <Route exact path = '/' component={Home} />
           <Route exact path='/profile' component={Profile} />
           <Route exact path='/explore' component={Explore} />
+          <Route exact path='/group/info' component={GroupInfo} />
         </Switch>
       </Fragment>
     </Provider>

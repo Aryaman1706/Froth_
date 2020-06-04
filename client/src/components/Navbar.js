@@ -29,7 +29,7 @@ const Navbar = ({ user: { user, loading, myGroupList }, groups: { groups }, load
                     {
                         user ?  
                         <div className="nav-wrapper" style={{backgroundColor:"rgb(3, 4, 94)"}}>
-                        <Link to="/" className="brand-logo">Froth_</Link>
+                        <Link to="/" className="brand-logo" style={{paddingLeft:"20px"}}>Froth_</Link>
                         <ul id="nav-mobile" className="right">
                             <li><Link to="/profile"><i className="material-icons left">account_circle</i>Profile</Link></li>
                             <li><Link to="/explore"><i className="material-icons left">search</i>Explore</Link></li>
