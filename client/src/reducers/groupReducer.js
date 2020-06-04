@@ -1,8 +1,8 @@
 import{
-    ADD_GROUP,
     LOAD_GROUPS,
     JOIN_GROUP,
-    LEAVE_GROUP
+    LEAVE_GROUP,
+    SET_CURRENT
 } from '../actions/types';
 
 const initialState = {
@@ -13,13 +13,6 @@ const initialState = {
 
 export default ( state = initialState, action ) => {
     switch(action.type){
-        
-        // add group
-        case ADD_GROUP:
-            return{
-                ...state,
-                groups: [action.payload, ...state.groups]
-            };
         
         // load groups
         case LOAD_GROUPS:
@@ -45,6 +38,13 @@ export default ( state = initialState, action ) => {
                 groups: [action.payload, ...state.groups]
             };
 
+        // set current
+        case SET_CURRENT:
+            return{
+                ...state,
+                current: action.payload
+            };
+            
         default:
             return state;
     }

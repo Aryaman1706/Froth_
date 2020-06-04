@@ -6,3 +6,4 @@ export const LOAD_GROUPS = 'LOAD_GROUPS';
 export const LOAD_MY_GROUPS = 'LOAD_MY_GROUPS';
 export const JOIN_GROUP = 'JOIN_GROUP';
 export const LEAVE_GROUP = 'LEAVE_GROUP';
+export const SET_CURRENT = 'SET_CURRENT';

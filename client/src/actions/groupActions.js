@@ -2,7 +2,8 @@ import axios from 'axios';
 
 import{
     ADD_GROUP,
-    LOAD_GROUPS
+    LOAD_GROUPS,
+    SET_CURRENT
 } from './types';
 
 // add group
@@ -27,4 +28,12 @@ export const loadGroups = () => async dispatch => {
         type: LOAD_GROUPS,
         payload: res.data
     });
+};
+
+// set current
+export const setCurrent = (data) => async dispatch => {
+    dispatch({
+        type: SET_CURRENT,
+        payload: data
+    })
 };

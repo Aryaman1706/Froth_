@@ -5,8 +5,9 @@ import M from 'materialize-css/dist/js/materialize.min.js';
 
 import { connect } from 'react-redux';
 import { joinGroup } from '../../actions/userActions';
+import { setCurrent } from '../../actions/groupActions';
 
-const GroupItem = ({ group, joinGroup}) => {
+const GroupItem = ({ group, joinGroup, setCurrent}) => {
     useEffect(()=>{
         M.AutoInit();
     },[]);
@@ -17,18 +18,23 @@ const GroupItem = ({ group, joinGroup}) => {
         joinGroup(_id);
     };
 
+    const modalOpen = (e) => {
+        setCurrent(group);
+    };
+
     return (
         <Fragment>
             <div className="col s4"><div className="card-panel primary" style={{padding:"10px"}}>
                 <div className="card-content white-text">
-                    <a href='#group-modal' className="modal-trigger white-text"><h5 className="card-title">{ title }</h5></a>
+                    <h5 className="card-title white-text">{ title }</h5>
                     <p><i className="material-icons left">group</i> { membersLength } Members</p>
                 </div>
                 <div className="card-action">
-                    <Link to="#!" className="waves-effect waves-light btn-small white black-text" style={{marginRight:"15px"}}><strong>Open</strong></Link>
-                    <Link onClick={onJoin} className="waves-effect waves-light btn-small white black-text" style={{marginRight:"15px"}}><strong>Join</strong></Link>
+                    <a href="#group-modal" onClick={modalOpen} className="modal-trigger waves-effect waves-light btn-small white black-text" style={{marginRight:"15px"}}><strong>Info</strong></a>
+                    <Link to="#!" onClick={onJoin} className="waves-effect waves-light btn-small white black-text" style={{marginRight:"15px"}}><strong>Join</strong></Link>
                 </div>
             </div></div>
+            <GroupModal />
         </Fragment>
         
     )
@@ -36,5 +42,5 @@ const GroupItem = ({ group, joinGroup}) => {
 
 export default connect(
     null,
-    { joinGroup }
+    { joinGroup, setCurrent }
 )(GroupItem);

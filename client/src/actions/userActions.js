@@ -46,7 +46,6 @@ export const logoutUser = () => async dispatch => {
 
 // load my groups
 export const loadMyGroups = (id) => async dispatch => {
-    console.log(1);
     const res = await axios.get(`/api/group/${id}`);
     dispatch({
         type: LOAD_MY_GROUPS,
