@@ -5,9 +5,9 @@ import M from 'materialize-css/dist/js/materialize.min.js';
 
 import { connect } from 'react-redux';
 import { joinGroup } from '../../actions/userActions';
-import { setCurrent } from '../../actions/groupActions';
+import { setInfo } from '../../actions/groupActions';
 
-const GroupItem = ({ group, joinGroup, setCurrent}) => {
+const GroupItem = ({ group, joinGroup, setInfo}) => {
     useEffect(()=>{
         M.AutoInit();
     },[]);
@@ -19,12 +19,12 @@ const GroupItem = ({ group, joinGroup, setCurrent}) => {
     };
 
     const modalOpen = (e) => {
-        setCurrent(group);
+        setInfo(group);
     };
 
     return (
         <Fragment>
-            <div className="col s4"><div className="card-panel primary" style={{padding:"10px"}}>
+            <div className="col s4"><div className="card-panel primary" style={{padding:"10px", borderRadius: "10px"}}>
                 <div className="card-content white-text">
                     <h5 className="card-title white-text">{ title }</h5>
                     <p><i className="material-icons left">group</i> { membersLength } Members</p>
@@ -42,5 +42,5 @@ const GroupItem = ({ group, joinGroup, setCurrent}) => {
 
 export default connect(
     null,
-    { joinGroup, setCurrent }
+    { joinGroup, setInfo }
 )(GroupItem);

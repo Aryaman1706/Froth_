@@ -8,6 +8,8 @@ import Profile from './components/User/Profile';
 import Home from './components/Pages/Home';
 import Explore from './components/Pages/Explore';
 import GroupInfo from './components/Groups/GroupInfo';
+import GroupChat from './components/Groups/GroupChat';
+import Common from './components/Common';
 
 const App = () => {;
 
@@ -19,7 +21,11 @@ const App = () => {;
         <Switch>
           <Route exact path = '/' component={Home} />
           <Route exact path='/profile' component={Profile} />
-          <Route exact path='/explore' component={Explore} />
+          <Route exact path='/explore' component={Explore} />  
+        </Switch>
+        <Common />
+        <Switch>
+          <Route exact path='/group' component={GroupChat} />
           <Route exact path='/group/info' component={GroupInfo} />
         </Switch>
       </Fragment>

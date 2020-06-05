@@ -1,14 +1,23 @@
 import React from 'react';
 import TitleCard from './TitleCard';
 import MembersCard from './MembersCard';
+import { connect } from 'react-redux';
+import Common from '../Common';
 
-const GroupInfo = () => {
+const GroupInfo = ({groups: { groups, current }}) => {
     return (
         <div className="container">
-            <TitleCard />
+            <TitleCard current={current}/>
             <MembersCard />
         </div>
     )
-}
+};
 
-export default GroupInfo
+const mapStateToProps = state => ({
+    groups: state.groups
+});
+
+export default connect(
+    mapStateToProps,
+    {}
+)(GroupInfo);

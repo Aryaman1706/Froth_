@@ -32,7 +32,7 @@ router.get('/:id', async(req, res)=>{
     if(!user){
         res.send("user not found");
     } else {
-        res.send({
+        res.json({
             name: user.name,
             email: user.email
         });

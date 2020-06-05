@@ -25,7 +25,7 @@ router.get('/', auth, async(req, res)=>{
 
 // get whole group
 router.get('/open/:id', auth, async (req, res)=>{
-    const group = await Group.findById(re.params.id);
+    const group = await Group.findById(req.params.id);
     res.send(group);
 });
 

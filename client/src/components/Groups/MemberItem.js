@@ -1,16 +1,25 @@
-import React, { Fragment } from 'react'
+import React, { Fragment } from 'react';
+import { connect } from 'react-redux';
+import { loadMembers } from '../../actions/groupActions';
 
-const MemberItem = () => {
+const MemberItem = ({groups, loadMembers}) => {
     return (
         <Fragment>
-            <li className="collection-item avatar" style={{marginBottom:"15px"}}>
+            <li className="collection-item avatar" style={{marginBottom:"15px", borderRadius: "10px"}}>
             <img src="/images/1.jpeg" className="circle" />
-                <span className="title">UserName</span>
+                <span className="title truncate">Name</span>
                 <p>Email:-</p>
-                <p>Email address</p>
+                <p className="truncate">email</p>
             </li>
         </Fragment>
     )
-}
+};
 
-export default MemberItem
+const mapStateToProps = state => ({
+    groups: state.groups
+});
+
+export default connect(
+    mapStateToProps,
+    { loadMembers }
+)(MemberItem);

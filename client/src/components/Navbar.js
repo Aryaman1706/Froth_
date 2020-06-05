@@ -16,7 +16,6 @@ const Navbar = ({ user: { user, loading, myGroupList }, groups: { groups }, load
     }, []);
 
     useEffect(()=>{
-        console.log("hello", myGroupList);
         myGroupList.forEach(id => {
             loadMyGroups(id);
         });
