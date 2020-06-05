@@ -13,7 +13,7 @@
 
 **Frontend**
 * React application bootstraped by [create-react-app](https://create-react-app.dev/).
-* [Redux]() - For state management.
+* [Redux](https://redux.js.org/) - For state management.
 * CSS framework :- [Materialize CSS](https://materializecss.com/).
 * [Socket.io -client](https://github.com/socketio/socket.io-client#readme) package used to provide RealTime chat functionality.
 
@@ -22,8 +22,27 @@
 * [Express.js](https://expressjs.com/) - Minimal [Node.js](https://nodejs.org/en/) web application framework.
 * [MongoDB](https://www.mongodb.com/) - Database service.
 * [Socket.io](https://socket.io/) - To provide RealTime functionality.
-* [Passport]() - To help with user authentication.
+* [Passport](http://www.passportjs.org/) - To help with user authentication.
 
 ## Screen Shots of the Application
+![image](images_readme/1.PNG)
+
+***
+
+![image](images_readme/2.PNG)
+
+***
+
+![image](images_readme/3.PNG)
+
+***
+
+![image](images_readme/4.PNG)
+
+***
+
+![image](images_readme/5.PNG)
+
+***
 
 ## Demo Video
