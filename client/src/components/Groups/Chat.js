@@ -21,9 +21,8 @@ const Chat = ( { groups:{ messages, current },user: { user }, addMessage} ) => {
 
     const ENDPOINT = "http://localhost";
     
-    useEffect(()=>{
-        seeMe();
-        
+
+    useEffect(()=>{        
         // Socket io work -->
         socket = io(ENDPOINT);
         socket.emit('join', current._id);
@@ -34,10 +33,14 @@ const Chat = ( { groups:{ messages, current },user: { user }, addMessage} ) => {
         // -->
     },[]);
 
+    useEffect(()=>{
+        seeMe();
+    },[messages])
+
     const onSubmit =(e) => {
         e.preventDefault();
         addMessage({id: current._id, data: { name: user.name, message: message }});
-        socket.emit('messageServer', message);
+        socket.emit('messageServer', {id: current._id, data: { name: user.name, message: message }});
         setMessage('');
     }
     return (
