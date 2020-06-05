@@ -6,7 +6,8 @@ import{
     SET_INFO,
     GET_WHOLE_GROUP,
     SET_OPEN_GROUP,
-    LOAD_MEMBERS
+    LOAD_MEMBERS,
+    ADD_MESSAGE
 } from '../actions/types';
 
 const initialState = {
@@ -16,7 +17,8 @@ const initialState = {
     current: null,
     wholeGroup: null,
     openGroup: null,
-    members: []
+    members: [],
+    messages: []
 };
 
 export default ( state = initialState, action ) => {
@@ -64,7 +66,8 @@ export default ( state = initialState, action ) => {
             return{
                 ...state,
                 wholeGroup: action.payload,
-                members: []
+                members: [],
+                messages: action.payload.messages
             };
 
         // set open group
@@ -73,12 +76,20 @@ export default ( state = initialState, action ) => {
                 ...state,
                 openGroup: action.payload
             };
-
+        
+        // laod members    
         case LOAD_MEMBERS:
             return{
                 ...state,
                 members: [...state.members, action.payload]
             };
+
+        // add message
+        case ADD_MESSAGE:
+            return{
+                ...state,
+                messages: [...state.messages, action.payload]
+            }
 
         default:
             return state;

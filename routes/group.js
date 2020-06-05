@@ -15,7 +15,6 @@ router.get('/', auth, async(req, res)=>{
     const group = await Group.find({},{"members": 0}).sort('-membersLength');
     var result= [];
     group.forEach((item)=>{
-        console.log(item)
         if( joined(item, user) === false ){
             result.push(item)
         }
@@ -123,6 +122,14 @@ router.put('/leave/:id', auth, async(req, res)=>{
         membersLength: group.membersLength,
         _id: group._id
     });
+});
+
+// add message
+router.put('/message/:id', auth, async(req, res)=>{
+    const group = await Group.findById(req.params.id);
+    group.messages.push(req.body.message);
+    await group.save();
+    res.send(group);
 });
 
 //remove a user from group

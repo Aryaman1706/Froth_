@@ -7,7 +7,8 @@ import{
     SET_INFO,
     GET_WHOLE_GROUP,
     SET_OPEN_GROUP,
-    LOAD_MEMBERS
+    LOAD_MEMBERS,
+    ADD_MESSAGE
 } from './types';
 
 // add group
@@ -70,9 +71,22 @@ export const setOpenGroup = (id) => async dispatch => {
 // load members
 export const loadMembers = (id) => async dispatch => {
     const  res = await axios.get(`/api/user/${id}`);
-    console.log(res.data);
     dispatch({
         type: LOAD_MEMBERS,
         payload: res.data
     })
 };
+
+// add message
+export const addMessage = ({id, data}) => async dispatch => {
+    const config = {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    };
+    const res = await axios.put(`/api/group/message/${id}`, { message: data } ,config);
+    dispatch({
+        type: ADD_MESSAGE,
+        payload: data
+    })
+}

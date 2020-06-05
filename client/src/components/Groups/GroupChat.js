@@ -6,12 +6,6 @@ import { getWholeGroup } from '../../actions/groupActions';
 import Common from '../Common';
 
 const GroupChat = ({ groups:{ groups, current, wholeGroup }, getWholeGroup }) => {
-    
-    // useEffect(()=>{
-    //     console.log("group chat");
-    //     getWholeGroup( current._id );
-    // },[current]);
-    
 
     return (
         <div className="container">

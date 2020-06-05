@@ -16,6 +16,10 @@ const groupSchema = new mongoose.Schema({
     membersLength: {
         type: Number,
         default: 0
+    },
+    messages:{
+        type: Array,
+        default: []
     }
 });
 

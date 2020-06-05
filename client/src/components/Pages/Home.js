@@ -23,7 +23,7 @@ const Home = ({ user: { loading, isAuthenticated } }) => {
                 </Fragment>
                 :
                 <Fragment>
-                    <h1>Welcome to Froth</h1>
+                    <h1 style={{fontFamily: "Concert One", color:"rgb(3, 4, 94)"}} className="center">Welcome to Froth</h1>
                 </Fragment>
         }
         
