@@ -1,7 +1,10 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { setOpenGroup } from '../../actions/groupActions';
 
-const GroupChatTitle = ({ current }) => {
+const GroupChatTitle = ({groups:{ current }, setOpenGroup}) => {
+
     return (
         <Fragment>
             {
@@ -13,7 +16,7 @@ const GroupChatTitle = ({ current }) => {
                         <h6 className="white-text">Members</h6>
                         <h6 style={{fontFamily: "Concert One", color:"rgb(3, 4, 94)"}}><i className="material-icons left">group</i> {current.membersLength} Members</h6>
                         <br />
-                        <Link to="/group/info" className="waves-effect waves-light btn-small white black-text" style={{marginRight:"15px"}}><strong>View Members</strong></Link>
+                        <Link to="/group/info"  className="waves-effect waves-light btn-small white black-text" style={{marginRight:"15px"}}><strong>View Members</strong></Link>
                     </div></div>
                 </Fragment>
                 :
@@ -32,4 +35,11 @@ const GroupChatTitle = ({ current }) => {
     )
 };
 
-export default GroupChatTitle;
+const mapStateToProps = state => ({
+    groups: state.groups
+});
+
+export default connect(
+    mapStateToProps,
+    {setOpenGroup}
+)(GroupChatTitle);

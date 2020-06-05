@@ -2,14 +2,15 @@ import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 import { loadMembers } from '../../actions/groupActions';
 
-const MemberItem = ({groups, loadMembers}) => {
+const MemberItem = ({member}) => {
+    const { name, email } = member;
     return (
         <Fragment>
             <li className="collection-item avatar" style={{marginBottom:"15px", borderRadius: "10px"}}>
             <img src="/images/1.jpeg" className="circle" />
-                <span className="title truncate">Name</span>
+                <span className="title truncate">{ name }</span>
                 <p>Email:-</p>
-                <p className="truncate">email</p>
+                <p className="truncate">{ email }</p>
             </li>
         </Fragment>
     )

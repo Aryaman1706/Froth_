@@ -5,15 +5,17 @@ import{
     SET_CURRENT,
     SET_INFO,
     GET_WHOLE_GROUP,
+    SET_OPEN_GROUP,
     LOAD_MEMBERS
 } from '../actions/types';
 
 const initialState = {
     group_loading: true,
     groups: [],
-    current: null,
     info: null,
+    current: null,
     wholeGroup: null,
+    openGroup: null,
     members: []
 };
 
@@ -62,7 +64,14 @@ export default ( state = initialState, action ) => {
             return{
                 ...state,
                 wholeGroup: action.payload,
-                members: action.payload.members
+                members: []
+            };
+
+        // set open group
+        case SET_OPEN_GROUP:
+            return{
+                ...state,
+                openGroup: action.payload
             };
 
         case LOAD_MEMBERS:

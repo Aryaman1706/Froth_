@@ -4,11 +4,12 @@ import { getWholeGroup } from '../actions/groupActions';
 import { loadMembers } from '../actions/groupActions';
 
 const Common = ({groups:{ current, wholeGroup }, getWholeGroup, loadMembers}) => {
-    if(current){
-        useEffect(()=>{
+    useEffect(()=>{
+        if(current){
             getWholeGroup(current._id);
-        },[current])
-    };
+        };
+    },[current])
+
 
     return (
         <div>

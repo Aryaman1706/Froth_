@@ -50,7 +50,7 @@ const Profile = ({ user: { user }, updateUser }) => {
             <div className="row">
                 <div className="col s4"><div style={{backgroundColor:"transparent", padding:"5px"}}>
                     <div className="center-align">
-                        <img src="/images/1.jpeg" height="350px"/>
+                        <img src="/images/1.jpeg" width="100%" height="100%"/>
                         <form>
                             <input
                                 type="file"

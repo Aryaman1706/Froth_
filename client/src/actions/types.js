@@ -9,4 +9,5 @@ export const LEAVE_GROUP = 'LEAVE_GROUP';
 export const SET_CURRENT = 'SET_CURRENT';
 export const SET_INFO = 'SET_INFO';
 export const GET_WHOLE_GROUP = 'GET_WHOLE_GROUP';
+export const SET_OPEN_GROUP = 'SET_OPEN_GROUP';
 export const LOAD_MEMBERS = 'LOAD_MEMBERS';

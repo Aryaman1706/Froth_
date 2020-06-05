@@ -6,6 +6,7 @@ import{
     SET_CURRENT,
     SET_INFO,
     GET_WHOLE_GROUP,
+    SET_OPEN_GROUP,
     LOAD_MEMBERS
 } from './types';
 
@@ -58,12 +59,20 @@ export const getWholeGroup = (id) => async dispatch => {
     })
 };
 
+// set open group
+export const setOpenGroup = (id) => async dispatch => {
+    dispatch({
+        type: SET_OPEN_GROUP,
+        payload: id
+    })
+}
+
 // load members
 export const loadMembers = (id) => async dispatch => {
     const  res = await axios.get(`/api/user/${id}`);
-    return res.data;
-    // dispatch({
-    //     type: LOAD_MEMBERS,
-    //     payload: res.data
-    // })
+    console.log(res.data);
+    dispatch({
+        type: LOAD_MEMBERS,
+        payload: res.data
+    })
 };
