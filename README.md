@@ -1,4 +1,4 @@
-# Froth_ | Froums for your College
+# Froth_ | Forums for your College
 > I am currently working on the application to make it more optimized and user friendly.
 ## How to Run the application on your machine?
 1. Clone the repository :- `git clone https://github.com/Aryaman1706/ReDoc.git`
