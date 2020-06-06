@@ -44,7 +44,7 @@ const AddGroupModal = ({ addGroup }) => {
 
                     <div className="row">
                         <div className="input-field col s12">
-                        <textarea name="description" type="text" value={description} onChange={onChange} className="white-text materialize-textarea" style={{borderBottomColor:'white'}} />
+                        <input name="description" type="text" value={description} onChange={onChange} className="white-text" style={{borderBottomColor:'white'}} />
                         <label htmlFor="description" className="active white-text ">Description</label>
                         </div>
                     </div>

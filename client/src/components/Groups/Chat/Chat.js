@@ -3,10 +3,20 @@ import ChatItem from './ChatItem'
 import { connect } from 'react-redux';
 import { addMessage } from '../../../actions/groupActions';
 import { addMessageState } from '../../../actions/groupActions';
+import { setCurrent } from '../../../actions/groupActions';
 import io from 'socket.io-client';
 
 let socket;
-const Chat = ( { groups:{ messages, current, members },user: { user }, addMessage, addMessageState} ) => {
+const Chat = ( { groups:{ messages, current, members },user: { user }, addMessage, addMessageState, setCurrent} ) => {
+    
+    let currentGroup;
+    if( current ){
+        currentGroup = current;
+    }else{
+        currentGroup = JSON.parse(localStorage.getItem('current'));
+        setCurrent(currentGroup);
+    }
+
     const chatInput = useRef(null);
 
     const seeMe = () => {
@@ -25,7 +35,7 @@ const Chat = ( { groups:{ messages, current, members },user: { user }, addMessag
     useEffect(()=>{        
         // Socket io work -->
         socket = io(ENDPOINT);
-        socket.emit('join', current._id);
+        socket.emit('join', currentGroup._id);
             socket.on('messageClient', (data) => {
                 console.log(data);
                 addMessageState(data.data);
@@ -87,5 +97,5 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps,
-    { addMessage, addMessageState }
+    { addMessage, addMessageState, setCurrent }
 )(Chat);
