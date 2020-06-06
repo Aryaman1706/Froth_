@@ -1,7 +1,7 @@
 # Froth_ | Forums for your College
 > I am currently working on the application to make it more optimized and user friendly.
 ## How to Run the application on your machine?
-1. Clone the repository :- `git clone https://github.com/Aryaman1706/ReDoc.git`
+1. Clone the repository :- `https://github.com/Aryaman1706/Froth_.git`
 2. Navigate to the folder via command line.
 3. Install [npm packages](https://www.npmjs.com/) for the backend :- `npm i`
 4. Navigate to the client folder :- `cd client`
