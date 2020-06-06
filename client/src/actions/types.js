@@ -12,3 +12,4 @@ export const GET_WHOLE_GROUP = 'GET_WHOLE_GROUP';
 export const SET_OPEN_GROUP = 'SET_OPEN_GROUP';
 export const LOAD_MEMBERS = 'LOAD_MEMBERS';
 export const ADD_MESSAGE = 'ADD_MESSAGE';
+export const ADD_MESSAGE_STATE = 'ADD_MESSAGE_STATE';

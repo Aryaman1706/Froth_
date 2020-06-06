@@ -2,7 +2,7 @@ import React from 'react';
 import TitleCard from './TitleCard';
 import MembersCard from './MembersCard';
 import { connect } from 'react-redux';
-import Common from '../Common';
+import Common from '../../Common';
 
 const GroupInfo = ({groups: { groups, current }}) => {
     return (

@@ -7,7 +7,8 @@ import{
     GET_WHOLE_GROUP,
     SET_OPEN_GROUP,
     LOAD_MEMBERS,
-    ADD_MESSAGE
+    ADD_MESSAGE,
+    ADD_MESSAGE_STATE
 } from '../actions/types';
 
 const initialState = {
@@ -82,6 +83,13 @@ export default ( state = initialState, action ) => {
             return{
                 ...state,
                 members: [...state.members, action.payload]
+            };
+
+        // add message state
+        case ADD_MESSAGE_STATE:
+            return{
+                ...state,
+                messages: [...state.messages, action.payload]
             };
 
         // add message

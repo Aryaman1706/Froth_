@@ -7,8 +7,8 @@ import Navbar from './components/Navbar';
 import Profile from './components/User/Profile';
 import Home from './components/Pages/Home';
 import Explore from './components/Pages/Explore';
-import GroupInfo from './components/Groups/GroupInfo';
-import GroupChat from './components/Groups/GroupChat';
+import GroupInfo from './components/Groups/Info/GroupInfo';
+import GroupChat from './components/Groups/Chat/GroupChat';
 import Common from './components/Common';
 
 const App = () => {;

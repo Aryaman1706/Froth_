@@ -8,7 +8,8 @@ import{
     GET_WHOLE_GROUP,
     SET_OPEN_GROUP,
     LOAD_MEMBERS,
-    ADD_MESSAGE
+    ADD_MESSAGE,
+    ADD_MESSAGE_STATE
 } from './types';
 
 // add group
@@ -75,6 +76,14 @@ export const loadMembers = (id) => async dispatch => {
         type: LOAD_MEMBERS,
         payload: res.data
     })
+};
+
+// add message to state only
+export const addMessageState = (data) => async dispatch =>{
+    dispatch({
+        type: ADD_MESSAGE_STATE,
+        payload: data
+    });
 };
 
 // add message

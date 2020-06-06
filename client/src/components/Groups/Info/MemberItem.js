@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
-import { loadMembers } from '../../actions/groupActions';
+import { loadMembers } from '../../../actions/groupActions';
 
 const MemberItem = ({member}) => {
     const { name, email } = member;

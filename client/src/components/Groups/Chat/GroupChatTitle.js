@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { setOpenGroup } from '../../actions/groupActions';
+import { setOpenGroup } from '../../../actions/groupActions';
 
 const GroupChatTitle = ({groups:{ current }, setOpenGroup}) => {
 

@@ -1,12 +1,12 @@
 import React, { Fragment, useEffect, useRef, useState } from 'react'
 import ChatItem from './ChatItem'
-import ChatInput from './ChatInput'
 import { connect } from 'react-redux';
-import { addMessage } from '../../actions/groupActions';
+import { addMessage } from '../../../actions/groupActions';
+import { addMessageState } from '../../../actions/groupActions';
 import io from 'socket.io-client';
 
 let socket;
-const Chat = ( { groups:{ messages, current },user: { user }, addMessage} ) => {
+const Chat = ( { groups:{ messages, current, members },user: { user }, addMessage, addMessageState} ) => {
     const chatInput = useRef(null);
 
     const seeMe = () => {
@@ -26,10 +26,10 @@ const Chat = ( { groups:{ messages, current },user: { user }, addMessage} ) => {
         // Socket io work -->
         socket = io(ENDPOINT);
         socket.emit('join', current._id);
-
-        socket.on('messageClient', (data) => {
-            addMessage(data);
-        });
+            socket.on('messageClient', (data) => {
+                console.log(data);
+                addMessageState(data.data);
+            });
         // -->
     },[]);
 
@@ -87,5 +87,5 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps,
-    { addMessage }
+    { addMessage, addMessageState }
 )(Chat);

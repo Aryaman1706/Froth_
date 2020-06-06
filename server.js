@@ -43,7 +43,7 @@ io.on('connection', (socket) => {
         console.log("joined");
         socket.on('messageServer', (data) => {
             console.log("received", data);
-            socket.broadcast.to(group_id).emit('messageClient', data);
+            socket.to(group_id).emit('messageClient', data);
             console.log("emited", data);
         });
     });

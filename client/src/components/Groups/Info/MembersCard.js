@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect } from 'react';
 import MemberItem from './MemberItem';
 import { connect } from 'react-redux';
-import { loadMembers, setOpenGroup } from '../../actions/groupActions';
+import { loadMembers, setOpenGroup } from '../../../actions/groupActions';
 
 const MembersCard = ({groups : { wholeGroup, openGroup, current, members }, loadMembers, setOpenGroup}) => {
 

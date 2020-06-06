@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux';
-import { addMessage } from '../../actions/groupActions';
+import { addMessage } from '../../../actions/groupActions';
 import io from 'socket.io-client';
 
 const ChatInput = ({ groups:{ messages, current }, addMessage }) => {
