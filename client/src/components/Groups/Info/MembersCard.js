@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { loadMembers, setOpenGroup } from '../../../actions/groupActions';
 
 const MembersCard = ({groups : { wholeGroup, openGroup, current, members }, loadMembers, setOpenGroup}) => {
-
+    
     useEffect(()=>{
         if( openGroup !== current._id ){
              wholeGroup.members.forEach(member => {

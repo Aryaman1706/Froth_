@@ -46,7 +46,6 @@ export const setInfo = (data) => async dispatch => {
 
 // set current
 export const setCurrent = (data) => async dispatch => {
-    localStorage.setItem('current', JSON.stringify(data));
     dispatch({
         type: SET_CURRENT,
         payload: data

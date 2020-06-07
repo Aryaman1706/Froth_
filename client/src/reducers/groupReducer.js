@@ -8,7 +8,8 @@ import{
     SET_OPEN_GROUP,
     LOAD_MEMBERS,
     ADD_MESSAGE,
-    ADD_MESSAGE_STATE
+    ADD_MESSAGE_STATE,
+    LOGOUT_USER
 } from '../actions/types';
 
 const initialState = {
@@ -67,7 +68,6 @@ export default ( state = initialState, action ) => {
             return{
                 ...state,
                 wholeGroup: action.payload,
-                members: [],
                 messages: action.payload.messages
             };
 
@@ -75,7 +75,8 @@ export default ( state = initialState, action ) => {
         case SET_OPEN_GROUP:
             return{
                 ...state,
-                openGroup: action.payload
+                openGroup: action.payload,
+                members:[]
             };
         
         // laod members    
@@ -97,6 +98,20 @@ export default ( state = initialState, action ) => {
             return{
                 ...state,
                 messages: [...state.messages, action.payload]
+            };
+
+        // logout user
+        case LOGOUT_USER:
+            return{
+                ...state,
+                group_loading: true,
+                groups: [],
+                info: null,
+                current: null,
+                wholeGroup: null,
+                openGroup: null,
+                members: [],
+                messages: []
             }
 
         default:

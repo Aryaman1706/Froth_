@@ -21,6 +21,11 @@ const Navbar = ({ user: { user, loading, myGroupList }, groups: { groups }, load
         });
     },[loading])
 
+    const onClick = (e) => {
+        logoutUser();
+        sessionStorage.clear();
+    }
+
     return (
         <Fragment>
             <div className="navbar-fixed">
@@ -32,7 +37,7 @@ const Navbar = ({ user: { user, loading, myGroupList }, groups: { groups }, load
                         <ul id="nav-mobile" className="right">
                             <li><Link to="/profile"><i className="material-icons left">account_circle</i>Profile</Link></li>
                             <li><Link to="/explore"><i className="material-icons left">search</i>Explore</Link></li>
-                            <li><a href="http://localhost:5000/api/auth/logout" onClick={()=>{logoutUser();}}><i className="material-icons right">exit_to_app</i>Logout</a></li>
+                            <li><a href="http://localhost:5000/api/auth/logout" onClick={onClick}><i className="material-icons right">exit_to_app</i>Logout</a></li>
                         </ul>
                         </div>
                         :

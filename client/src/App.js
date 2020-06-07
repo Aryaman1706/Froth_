@@ -1,7 +1,9 @@
 import React, { Fragment, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import store from './store';
+import { PersistGate } from 'redux-persist/integration/react';
+import result  from './store';
+const { store, persistor } = result;
 
 import Navbar from './components/Navbar';
 import Profile from './components/User/Profile';
@@ -16,6 +18,7 @@ const App = () => {;
   return (
     <Router>
     <Provider store = {store}>
+    <PersistGate persistor={ persistor } >
       <Fragment>
         <Navbar />
         <Switch>
@@ -29,6 +32,7 @@ const App = () => {;
           <Route exact path='/group/info' component={GroupInfo} />
         </Switch>
       </Fragment>
+      </PersistGate>
     </Provider>
     </Router>
   )
